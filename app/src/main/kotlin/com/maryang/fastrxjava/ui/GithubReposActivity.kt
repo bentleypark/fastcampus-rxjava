@@ -32,15 +32,14 @@ class GithubReposActivity : AppCompatActivity() {
     private fun load(showLoading: Boolean = false) {
         if (showLoading)
             showLoading()
-        viewModel.getGithubRepos(
-            {
+
+        viewModel.getGithubRepos()
+            .subscribe({
                 hideLoading()
                 adapter.items = it
-            },
-            {
+            }, {
                 hideLoading()
-            }
-        )
+            })
     }
 
     private fun showLoading() {
